@@ -428,7 +428,7 @@
       line-height: 1.55;
       opacity: 0;
       transform: translate(-50%, -50%) rotate(var(--r)) scale(0.76);
-      animation: note-pop 2.35s cubic-bezier(.18, .92, .22, 1) forwards;
+      animation: note-pop 4.1s cubic-bezier(.18, .92, .22, 1) forwards;
     }
 
     .wish-note::before {
@@ -737,7 +737,7 @@
       burstConfetti(130);
 
       wishes.forEach((wish, index) => {
-        window.setTimeout(() => showWish(wish, index), 520 + index * 260);
+        window.setTimeout(() => showWish(wish, index), 700 + index * 430);
       });
 
       window.setTimeout(() => {
@@ -756,17 +756,17 @@
     }
 
     function showWish(text, index) {
-      const note = document.createElement("div");
-      const [x, y] = positions[index % positions.length];
-      note.className = "wish-note";
-      note.dataset.tone = tones[index % tones.length];
-      note.style.left = `${jitter(x, 5)}%`;
-      note.style.top = `${jitter(y, 5)}%`;
-      note.style.setProperty("--r", `${jitter(0, 9)}deg`);
-      note.textContent = text;
-      wishLayer.appendChild(note);
-      window.setTimeout(() => note.remove(), 2450);
-    }
+  const note = document.createElement("div");
+  const [x, y] = positions[index % positions.length];
+  note.className = "wish-note";
+  note.dataset.tone = tones[index % tones.length];
+  note.style.left = `clamp(112px, ${jitter(x, 3)}%, calc(100vw - 112px))`;
+  note.style.top = `clamp(86px, ${jitter(y, 4)}%, calc(100vh - 110px))`;
+  note.style.setProperty("--r", `${jitter(0, 7)}deg`);
+  note.textContent = text;
+  wishLayer.appendChild(note);
+  window.setTimeout(() => note.remove(), 4200);
+}
 
     function burstConfetti(count) {
       const colors = ["#fff3df", "#e5c486", "#d88c7a", "#8f3f4d", "#7fa88d"];
